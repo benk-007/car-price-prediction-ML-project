@@ -22,13 +22,15 @@ The workflow includes:
 
 ## 📂 Repository Structure
 
+```
 car-price-prediction-ML-project/
-├── car_price_prediction.ipynb # Main ML notebook
-├── car_price_dataset.csv # Raw dataset used for training
-├── gb_model.pkl # Final Gradient Boosting model (exported)
-├── scaler.pkl # Standard scaler used during preprocessing
+├── car_price_prediction.ipynb   # Main ML notebook
+├── car_price_dataset.csv         # Raw dataset used for training
+├── gb_model.pkl                  # Final Gradient Boosting model (exported)
+├── scaler.pkl                    # Standard scaler used during preprocessing
 ├── .gitignore
-└── README.md # Documentation 
+└── README.md                     # Documentation 
+```
 
 ---
 
@@ -51,77 +53,78 @@ Install required dependencies:
 
 ```bash
 pip install numpy pandas scikit-learn matplotlib seaborn shap joblib
-## 📝 Running the Notebook (Optional)
+```
+
+### 📝 Running the Notebook (Optional)
 
 To run the notebook locally:
 
 ```bash
 pip install jupyter
 jupyter notebook
-📊 Workflow Summary
-1️⃣ Data Preprocessing
-Handling missing values
+```
 
-Encoding categorical variables
+---
 
-Scaling numerical features
+## 📊 Workflow Summary
 
-Splitting dataset into train/test sets
+### 1️⃣ Data Preprocessing
+- Handling missing values
+- Encoding categorical variables
+- Scaling numerical features
+- Splitting dataset into train/test sets
 
-2️⃣ Feature Engineering
-Car_Age = 2025 - Year
+### 2️⃣ Feature Engineering
+- `Car_Age = 2025 - Year`
+- `Km_per_Year = Mileage / Car_Age`
+- `Engine_per_Door = Engine_Size / Number_of_Doors`
 
-Km_per_Year = Mileage / Car_Age
+### 3️⃣ Model Training
 
-Engine_per_Door = Engine_Size / Number_of_Doors
+**Models tested:**
+- Linear Regression
+- Random Forest Regressor
+- Gradient Boosting Regressor *(Best model)*
 
-3️⃣ Model Training
-Models tested:
+**Evaluation metrics:**
+- RMSE
+- MAE
+- R² Score
 
-Linear Regression
+### 4️⃣ Explainability (XAI)
 
-Random Forest Regressor
+Using **SHAP** to understand:
+- Global feature importance
+- Local predictions
+- Which features drive price up or down
 
-Gradient Boosting Regressor (Best model)
+**Examples of important features:**
 
-Evaluation metrics:
+| Feature       | Influence |
+|---------------|-----------|
+| Car Age       | 🔥 High   |
+| Mileage       | 🔥 High   |
+| Engine Size   | Medium    |
+| Brand / Model | Medium    |
 
-RMSE
+---
 
-MAE
+## 📁 Outputs
 
-R² Score
-
-4️⃣ Explainability (XAI)
-Using SHAP to understand:
-
-Global feature importance
-
-Local predictions
-
-Which features drive price up or down
-
-Examples of important features:
-Feature	Influence
-Car Age	🔥 High
-Mileage	🔥 High
-Engine Size	Medium
-Brand / Model	Medium
-
-📁 Outputs
 The project exports two artifacts:
 
-gb_model.pkl → Trained Gradient Boosting model
-
-scaler.pkl → Normalization scaler used in the preprocessing pipeline
+- `gb_model.pkl` → Trained Gradient Boosting model
+- `scaler.pkl` → Normalization scaler used in the preprocessing pipeline
 
 These files can be integrated into a Flask or FastAPI application for real-time predictions.
 
-🧪 How to Use the Saved Model
+---
+
+## 🧪 How to Use the Saved Model
+
 Example Python script:
 
-python
-Copier le code
+```python
 import joblib
 import pandas as pd
 
@@ -143,20 +146,24 @@ sample = pd.DataFrame([{
 # Scale and predict
 sample_scaled = scaler.transform(sample)
 prediction = model.predict(sample_scaled)
-
 print("Predicted Price:", prediction[0])
-👨‍💻 Author
-Mokhtar BENKIRANE
-Machine Learning & Data Science Enthusiast
+```
+
+---
+
+## 👨‍💻 Author
+
+**Mokhtar BENKIRANE**  
+Machine Learning & Data Science Enthusiast  
 📍 Morocco
 
 If you find this project useful, ⭐ feel free to star the repository!
 
-📣 Future Improvements
-✔ Deploy prediction API using Flask or FastAPI
+---
 
-✔ Build an interactive UI using Streamlit
+## 📣 Future Improvements
 
-✔ Add hyperparameter tuning (Random Search, Optuna)
-
-✔ Add CI/CD pipeline and unit tests
+- ✔ Deploy prediction API using Flask or FastAPI
+- ✔ Build an interactive UI using Streamlit
+- ✔ Add hyperparameter tuning (Random Search, Optuna)
+- ✔ Add CI/CD pipeline and unit tests
