@@ -1,0 +1,12 @@
+# Environnement virtuel
+.venv/
+
+# Cache Python
+__pycache__/
+*.pyc
+
+# Checkpoints notebooks
+.ipynb_checkpoints/
+
+# Modèles (optionnel : tu peux les garder si tu veux)
+# *.pkl
